@@ -1,0 +1,46 @@
+x-sandbox-defaults: &sandbox-defaults
+  volumes:
+    - code-champs_submission-tests:/tmp
+  working_dir: /app
+  network_mode: none
+  user: "65534:65534"
+  read_only: true
+  tmpfs:
+    - /run:rw,noexec,nosuid,size=16m
+    - /var/tmp:rw,noexec,nosuid,size=16m
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+  pids_limit: 128
+  ulimits:
+    nproc: 128
+    nofile:
+      soft: 1024
+      hard: 1024
+  init: true
+
+services:
+  php8.4:
+    <<: *sandbox-defaults
+    build:
+      context: ./php8.4
+
+  php7.4:
+    <<: *sandbox-defaults
+    build:
+      context: ./php7.4
+
+  es2023:
+    <<: *sandbox-defaults
+    build:
+      context: ./es2023
+
+  bash5.2:
+    <<: *sandbox-defaults
+    build:
+      context: ./bash5.2
+
+volumes:
+  code-champs_submission-tests:
+    external: true

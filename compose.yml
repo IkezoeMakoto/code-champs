@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+      args:
+        DOCKER_GID: ${DOCKER_GID}
+    volumes:
+      - ./app/src:/var/www/html
+      - ./submission-executer:/opt/submission-executer
+      - /var/run/docker.sock:/var/run/docker.sock
+      - submission-tests:/tmp
+    user: root
+    privileged: true
+    depends_on:
+      - database
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./app/src:/var/www/html
+    depends_on:
+      - app
+
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+    environment:
+      STAGE: ${STAGE}
+      DOMAINS: "${DOMAINS} -> http://nginx"
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+
+  database:
+    image: mysql:8.4
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/conf:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data:
+  submission-tests:
+  https-portal-data:

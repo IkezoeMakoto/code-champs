@@ -1,0 +1,4 @@
+import { readFileSync } from "fs";
+const input = readFileSync("/dev/stdin", "utf8");
+const number = parseFloat(input);
+console.log(number ** 2);
