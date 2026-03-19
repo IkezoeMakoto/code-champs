@@ -21,6 +21,11 @@ x-sandbox-defaults: &sandbox-defaults
   init: true
 
 services:
+  php8.5:
+    <<: *sandbox-defaults
+    build:
+      context: ./php8.5
+
   php8.4:
     <<: *sandbox-defaults
     build:
@@ -31,10 +36,10 @@ services:
     build:
       context: ./php7.4
 
-  es2023:
+  node22:
     <<: *sandbox-defaults
     build:
-      context: ./es2023
+      context: ./node22
 
   bash5.2:
     <<: *sandbox-defaults
