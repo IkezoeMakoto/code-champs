@@ -14,8 +14,8 @@
                     <form action="/login" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">メールアドレス</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
+                            <label for="login_id" class="form-label">ログインID</label>
+                            <input type="text" id="login_id" name="login_id" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">パスワード</label>

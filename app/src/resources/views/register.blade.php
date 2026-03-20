@@ -13,9 +13,9 @@
             <div class="invalid-feedback">名前を入力してください。</div>
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">メールアドレス</label>
-            <input type="email" id="email" name="email" class="form-control" required>
-            <div class="invalid-feedback">有効なメールアドレスを入力してください。</div>
+            <label for="login_id" class="form-label">ログインID</label>
+            <input type="text" id="login_id" name="login_id" class="form-control" required>
+            <div class="invalid-feedback">ログインIDを入力してください。</div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">パスワード</label>
