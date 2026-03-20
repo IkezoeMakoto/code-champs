@@ -17,31 +17,22 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            [
-                'name' => 'admin User',
-                'email' => 'admin@example.com',
-                'password' => bcrypt('password'),
-                'is_admin' => true,
-            ].
-            [
-                'name' => 'test User',
-                'email' => 'test@example.com',
-                'password' => bcrypt('password'),
-                'is_admin' => false,
-            ]
+            'name' => 'admin User',
+            'login_id' => 'admin@example.com',
+            'password' => bcrypt('password'),
+            'is_admin' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'test User',
+            'login_id' => 'test@example.com',
+            'password' => bcrypt('password'),
+            'is_admin' => false,
         ]);
 
         // Insert master data for languages
-        Language::create([
-            [
-                'name' => 'php8.4', // insert into languages (`name`) values ('php8.4');
-            ],
-            [
-                'name' => 'php7.4', // insert into languages (`name`) values ('php7.4');
-            ],
-            [
-                'name' => 'es2023', // insert into languages (`name`) values ('es2023');
-            ]
-        ]);
+        Language::create(['name' => 'php8.4']);
+        Language::create(['name' => 'php7.4']);
+        Language::create(['name' => 'es2023']);
     }
 }

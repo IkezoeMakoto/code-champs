@@ -10,7 +10,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|email',
+            'login_id' => 'required|string',
             'password' => 'required',
         ]);
 
@@ -28,13 +28,20 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'login_id' => [
+                'required',
+                'string',
+                'min:3',
+                'max:255',
+                'regex:/^[a-z0-9@._+\-]+$/',
+                'unique:users,login_id',
+            ],
             'password' => 'required|string|min:8',
         ]);
 
         \App\Models\User::create([
             'name' => $validated['name'],
-            'email' => $validated['email'],
+            'login_id' => $validated['login_id'],
             'password' => bcrypt($validated['password']),
         ]);
 
