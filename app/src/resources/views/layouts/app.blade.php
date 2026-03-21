@@ -50,8 +50,12 @@
     <main class="mt-4">
         @yield('content')
     </main>
-    <footer>
-        <p>Application Footer</p>
+    <footer class="border-top mt-5 py-4">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <p class="mb-0 small text-muted">&copy; {{ date('Y') }} Code Champs</p>
+            </div>
+        </div>
     </footer>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
